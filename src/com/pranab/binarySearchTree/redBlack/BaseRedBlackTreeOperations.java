@@ -5,20 +5,20 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 import java.util.function.Consumer;
 
-import com.pranab.binarySearchTree.Node;
 import com.pranab.binarySearchTree.TreeOperations;
 
-public abstract class BaseRedBlackTreeOperations<K extends Comparable<? super K>, V> implements TreeOperations<K, V> {
-	protected Node<K, V> root;
+@Deprecated
+public abstract class BaseRedBlackTreeOperations<K extends Comparable<K>, V>  {
+	protected NodeRB<K, V> root;
 	protected int size;
 	protected ReentrantReadWriteLock locker = new ReentrantReadWriteLock();
 	protected ReadLock readlocker = locker.readLock();
 	protected WriteLock writelocker = locker.writeLock();
 	NodeRB<K, V> sentinal=new NodeRB<K, V>(null,null,null,null,null,true);
 	
-	protected Node<K, V> search(K key) {
+	protected NodeRB<K, V> search(K key) {
 		readlocker.lock();
-		Node<K, V> found=sentinal;
+		NodeRB<K, V> found=sentinal;
 		try {
 			found = root;
 			while (found != sentinal) {
@@ -37,10 +37,10 @@ public abstract class BaseRedBlackTreeOperations<K extends Comparable<? super K>
 		}
 	}
 
-	protected Node<K, V> getMinimum(Node<K, V> node) {
+	protected NodeRB<K, V> getMinimum(NodeRB<K, V> NodeRB) {
 		readlocker.lock();
 		try {
-			Node<K, V> minimun = node;
+			NodeRB<K, V> minimun = NodeRB;
 			if (minimun != sentinal) {
 				while (minimun.getLeftChild() != sentinal) {
 					minimun = minimun.getLeftChild();
@@ -52,10 +52,10 @@ public abstract class BaseRedBlackTreeOperations<K extends Comparable<? super K>
 		}
 	}
 
-	protected Node<K, V> getMaximum(Node<K, V> node) {
+	protected NodeRB<K, V> getMaximum(NodeRB<K, V> NodeRB) {
 		readlocker.lock();
 		try {
-			Node<K, V> maximum = node;
+			NodeRB<K, V> maximum = NodeRB;
 			if (maximum != sentinal) {
 				while (maximum.getRightChild() != sentinal) {
 					maximum = maximum.getRightChild();
@@ -67,16 +67,16 @@ public abstract class BaseRedBlackTreeOperations<K extends Comparable<? super K>
 		}
 	}
 
-	protected Node<K, V> getSuccessor(K key) {
+	protected NodeRB<K, V> getSuccessor(K key) {
 		readlocker.lock();
 		try {
-			Node<K, V> successor = null;
-			Node<K, V> found = search(key);
+			NodeRB<K, V> successor = null;
+			NodeRB<K, V> found = search(key);
 			if (found != sentinal) {
 				if (found.getRightChild() != sentinal) {
 					successor = getMinimum(found.getRightChild());
 				} else {
-					Node<K, V> parent = found.getParent();
+					NodeRB<K, V> parent = found.getParent();
 					while ((parent != sentinal) && (found == parent.getRightChild())) {
 						found = parent;
 						parent = found.getParent();
@@ -90,16 +90,16 @@ public abstract class BaseRedBlackTreeOperations<K extends Comparable<? super K>
 		}
 	}
 
-	protected Node<K, V> getPredecessor(K key) {
+	protected NodeRB<K, V> getPredecessor(K key) {
 		readlocker.lock();
 		try {
-			Node<K, V> predecessor = null;
-			Node<K, V> found = search(key);
+			NodeRB<K, V> predecessor = null;
+			NodeRB<K, V> found = search(key);
 			if (found != sentinal) {
 				if (found.getLeftChild() != sentinal) {
 					predecessor = getMaximum(found.getLeftChild());
 				} else {
-					Node<K, V> parent = found.getParent();
+					NodeRB<K, V> parent = found.getParent();
 					while ((parent != sentinal) && (found == parent.getLeftChild())) {
 						found = parent;
 						parent = found.getParent();
@@ -113,10 +113,10 @@ public abstract class BaseRedBlackTreeOperations<K extends Comparable<? super K>
 		}
 	}
 
-	protected void transplant(Node<K, V> replaced, Node<K, V> replacing) {
+	protected void transplant(NodeRB<K, V> replaced, NodeRB<K, V> replacing) {
 		writelocker.lock();
 		try {
-			Node<K, V> parent = replaced.getParent();
+			NodeRB<K, V> parent = replaced.getParent();
 			if (null != replacing) {
 				replacing.setParent(parent);
 			}
@@ -134,7 +134,7 @@ public abstract class BaseRedBlackTreeOperations<K extends Comparable<? super K>
 		}
 	}
 
-	protected void walk(Node<K, V> startNode, Consumer<Node<K, V>> work) {
+	protected void walk(NodeRB<K, V> startNode, Consumer<NodeRB<K, V>> work) {
 		readlocker.lock();
 		try {
 			if (startNode != sentinal) {

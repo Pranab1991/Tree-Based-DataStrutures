@@ -1,12 +1,16 @@
 package com.pranab.binarySearchTree.redBlack;
 
 import java.util.function.Consumer;
-import com.pranab.binarySearchTree.Node;
 
-public class RedBlackBinarySearchTree<K extends Comparable<? super K>, V> extends BaseRedBlackTreeOperations<K, V> {
+/*
+ * UNSTABLE !!!!! work pending use RedBlackTree instead
+ * 
+ */
+@Deprecated
+public class RedBlackBinarySearchTree<K extends Comparable<K>, V> extends BaseRedBlackTreeOperations<K, V> {
 
 	
-	@Override
+	 
 	public boolean insert(K key, V value) {
 		NodeRB<K, V> newLeaf = new NodeRB<>(key, sentinal, sentinal, sentinal, value, false);
 		NodeRB<K, V> searchNode = (NodeRB<K, V>) this.root;
@@ -43,7 +47,7 @@ public class RedBlackBinarySearchTree<K extends Comparable<? super K>, V> extend
 		return true;
 	}
 
-	private void restructureTree(Node<K, V> validateNode) {
+	private void restructureTree(NodeRB<K, V> validateNode) {
 		while ((validateNode.getParent() != sentinal) && (!((NodeRB<K, V>) validateNode.getParent()).isBlack())) {
 			if (validateNode.getParent().getParent() != sentinal) {
 				NodeRB<K, V> grandParent = ((NodeRB<K, V>) validateNode.getParent().getParent());
@@ -87,7 +91,7 @@ public class RedBlackBinarySearchTree<K extends Comparable<? super K>, V> extend
 		((NodeRB<K, V>) this.root).setBlack(true);
 	}
 
-	@Override
+	 
 	public boolean delete(K key) {
 		NodeRB<K, V> delete_Node = (NodeRB<K, V>) search(key);
 		if (delete_Node == sentinal) {
@@ -184,38 +188,38 @@ public class RedBlackBinarySearchTree<K extends Comparable<? super K>, V> extend
 		}
 	}
 
-	private void leftRotate(Node<K, V> node) {
-		Node<K, V> parent = node.getParent();
-		Node<K, V> new_pivoit = node.getRightChild();
+	private void leftRotate(NodeRB<K, V> NodeRB) {
+		NodeRB<K, V> parent = NodeRB.getParent();
+		NodeRB<K, V> new_pivoit = NodeRB.getRightChild();
 		if (new_pivoit != sentinal) {
-			node.setRightChild(new_pivoit.getLeftChild());
+			NodeRB.setRightChild(new_pivoit.getLeftChild());
 			if (new_pivoit.getLeftChild() != sentinal) {
-				new_pivoit.getLeftChild().setParent(node);
+				new_pivoit.getLeftChild().setParent(NodeRB);
 			}
-			setParentPivoit(node, parent, new_pivoit);
-			node.setParent(new_pivoit);
-			new_pivoit.setLeftChild(node);
+			setParentPivoit(NodeRB, parent, new_pivoit);
+			NodeRB.setParent(new_pivoit);
+			new_pivoit.setLeftChild(NodeRB);
 		}
 	}
 
-	private void rightRotate(Node<K, V> node) {
-		Node<K, V> parent = node.getParent();
-		Node<K, V> new_pivoit = node.getLeftChild();
+	private void rightRotate(NodeRB<K, V> NodeRB) {
+		NodeRB<K, V> parent = NodeRB.getParent();
+		NodeRB<K, V> new_pivoit = NodeRB.getLeftChild();
 		if (new_pivoit != sentinal) {
-			node.setLeftChild(new_pivoit.getRightChild());
+			NodeRB.setLeftChild(new_pivoit.getRightChild());
 			if (new_pivoit.getRightChild() != sentinal) {
-				new_pivoit.getRightChild().setParent(node);
+				new_pivoit.getRightChild().setParent(NodeRB);
 			}
-			setParentPivoit(node, parent, new_pivoit);
-			node.setParent(new_pivoit);
-			new_pivoit.setRightChild(node);
+			setParentPivoit(NodeRB, parent, new_pivoit);
+			NodeRB.setParent(new_pivoit);
+			new_pivoit.setRightChild(NodeRB);
 		}
 	}
 
-	private void setParentPivoit(Node<K, V> node, Node<K, V> parent, Node<K, V> new_pivoit) {
+	private void setParentPivoit(NodeRB<K, V> NodeRB, NodeRB<K, V> parent, NodeRB<K, V> new_pivoit) {
 		new_pivoit.setParent(parent);
 		if (parent != sentinal) {
-			if (parent.getLeftChild() == node) {
+			if (parent.getLeftChild() == NodeRB) {
 				parent.setLeftChild(new_pivoit);
 			} else {
 				parent.setRightChild(new_pivoit);
@@ -225,63 +229,63 @@ public class RedBlackBinarySearchTree<K extends Comparable<? super K>, V> extend
 		}
 	}
 
-	@Override
+	 
 	public V getValue(K key) {
 		readlocker.lock();
 		try {
-			Node<K, V> value = search(key);
+			NodeRB<K, V> value = search(key);
 			return value == sentinal ? null : value.getValue();
 		} finally {
 			readlocker.unlock();
 		}
 	}
 
-	@Override
+	 
 	public K getMinimumKey() {
 		readlocker.lock();
 		try {
-			Node<K, V> value = getMinimum(this.root);
+			NodeRB<K, V> value = getMinimum(this.root);
 			return value == sentinal ? null : value.getKey();
 		} finally {
 			readlocker.unlock();
 		}
 	}
 
-	@Override
+	 
 	public K getMaximumKey() {
 		readlocker.lock();
 		try {
-			Node<K, V> value = getMaximum(this.root);
+			NodeRB<K, V> value = getMaximum(this.root);
 			return value == sentinal ? null : value.getKey();
 		} finally {
 			readlocker.unlock();
 		}
 	}
 
-	@Override
+	 
 	public K getSuccessorKey(K key) {
 		readlocker.lock();
 		try {
-			Node<K, V> value = getSuccessor(key);
+			NodeRB<K, V> value = getSuccessor(key);
 			return value == null ? null : value.getKey();
 		} finally {
 			readlocker.unlock();
 		}
 	}
 
-	@Override
+	 
 	public K getPredecessorKey(K key) {
 		readlocker.lock();
 		try {
-			Node<K, V> value = getPredecessor(key);
+			NodeRB<K, V> value = getPredecessor(key);
 			return value == null ? null : value.getKey();
 		} finally {
 			readlocker.unlock();
 		}
 	}
 
-	@Override
-	public void iterator(K key, Consumer<Node<K, V>> work) {
+	 
+	public void iterator(K key, Consumer<NodeRB<K, V>> work) {
 		readlocker.lock();
 		try {
 			walk(search(key), work);
@@ -294,16 +298,16 @@ public class RedBlackBinarySearchTree<K extends Comparable<? super K>, V> extend
 		return root!=null?root.getKey():null;
 	}
 
-	@Override
+	 
 	public int size() {
 		return size;
 	}
 
-	@Override
+	 
 	public boolean contains(K key) {
 		readlocker.lock();
 		try {
-			Node<K, V> value = getMinimum(this.root);
+			NodeRB<K, V> value = getMinimum(this.root);
 			return value == null ? false : true;
 		} finally {
 			readlocker.unlock();
