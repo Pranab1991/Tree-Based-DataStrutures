@@ -48,26 +48,26 @@ The APIs exposed for these two data structures are segregated in two interfaces 
 
 Below code snippet depicts usage of the BST:
 
-'''java:
+```java:
 BinarySearchTree<Integer, String> tree = new BinarySearchTree<>();  //creation of a BST
 		tree.insert(1, "One");  //creation of a node 
 		tree.insert(10, "Ten");
 		tree.insert(8, "Eight");
 		tree.delete(10); //deletion of a node
-'''
+```
 
  **RedBlackTree.java**  is the __Key - Value__ implementation of Red-Black Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. It's not Thread-safe yet.<br><br>
 
 Below code snippet depicts usage of the Red Black:
 
-'''java:
+```java:
 
 RedBlackTree<Integer, String> tree = new RedBlackTree<>(); //creation of a RB Tree
 		tree.insert(1, "One"); //creation of a node 
 		tree.insert(10, "Ten");
 		tree.insert(8, "Eight");
 		tree.delete(10); //deletion of a node
-'''
+```
 
 
 
