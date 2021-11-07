@@ -40,13 +40,13 @@ A tree data structure can be defined recursively as a collection of nodes, where
 
 
 
-<p>The APIs exposed for these two data structures are segregated in two interfaces __TreeOperations.java__ and __RebBlackTree.java__ . As promised by the design of data structure to expose operations with time complexity of **O(log n)** , the same has been achieved in implementation.<br><br>
+The APIs exposed for these two data structures are segregated in two interfaces __TreeOperations.java__ and __RebBlackTree.java__ . As promised by the design of data structure to expose operations with time complexity of **O(log n)** , the same has been achieved in implementation.<br><br>
 
 
 
 **BinarySearchTree.java**: is the __Key - Value__ implementation of Binary Search Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. The implementation is Thread-safe.<br><br>
 
-Below code snippet depicts usage of the BST:</p>
+Below code snippet depicts usage of the BST:
 
 '''java:
 BinarySearchTree<Integer, String> tree = new BinarySearchTree<>();  //creation of a BST
@@ -56,7 +56,7 @@ BinarySearchTree<Integer, String> tree = new BinarySearchTree<>();  //creation o
 		tree.delete(10); //deletion of a node
 '''
 
-<p> **RedBlackTree.java**  is the __Key - Value__ implementation of Red-Black Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. It's not Thread-safe yet.<br><br>
+ **RedBlackTree.java**  is the __Key - Value__ implementation of Red-Black Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. It's not Thread-safe yet.<br><br>
 
 Below code snippet depicts usage of the Red Black:
 
@@ -68,7 +68,7 @@ RedBlackTree<Integer, String> tree = new RedBlackTree<>(); //creation of a RB Tr
 		tree.insert(8, "Eight");
 		tree.delete(10); //deletion of a node
 '''
-</p>
+
 
 
 
