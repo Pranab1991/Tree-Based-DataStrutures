@@ -1,18 +1,10 @@
 # Tree
 
-
-
 ## Introduction:
-
-
 
  **Tree** In computer science, a tree is a widely used abstract data type that simulates a hierarchical tree structure, with a root value and subtrees of children with a parent node, represented as a set of linked nodes.<br><br>
 
-
-
 A tree data structure can be defined recursively as a collection of nodes, where each node is a data structure consisting of a value and a list of references to nodes. The start of the tree is the "root node" and the reference nodes are the "children". No reference is duplicated and none points to the root.
-
-
 
 ## Getting Started:
 
@@ -39,12 +31,13 @@ A tree data structure can be defined recursively as a collection of nodes, where
 			4. Every path from a node (including root) to any of its descendants NULL nodes has the same number of black nodes.</pre>
 
 
+<br>
 
-The APIs exposed for these two data structures are segregated in two interfaces __TreeOperations.java__ and __RebBlackTree.java__ . As promised by the design of data structure to expose operations with time complexity of **O(log n)** , the same has been achieved in implementation.<br><br>
+###### Design :
 
+The APIs exposed for these two data structures are segregated in two interfaces __TreeOperations.java__ and __RebBlackTree.java__ . As promised by the design of data structure to expose operations with time complexity of **O(log n)** , the same has been achieved in implementation.<br>
 
-
-**BinarySearchTree.java**: is the __Key - Value__ implementation of Binary Search Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. The implementation is Thread-safe.<br><br>
+**BinarySearchTree.java**: is the __Key - Value__ implementation of Binary Search Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. The implementation is Thread-safe.<br>
 
 Below code snippet depicts usage of the BST:
 
@@ -56,7 +49,9 @@ BinarySearchTree<Integer, String> tree = new BinarySearchTree<>();  //creation o
 		tree.delete(10); //deletion of a node
 ```
 
- **RedBlackTree.java**  is the __Key - Value__ implementation of Red-Black Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. It's not Thread-safe yet.<br><br>
+<br>
+
+ **RedBlackTree.java**  is the __Key - Value__ implementation of Red-Black Tree data structure. The implementation uses Generics to achieve Template class design meaning, custom objects can be used just as in case of a Map collection in java. It's not Thread-safe yet.<br>
 
 Below code snippet depicts usage of the Red Black:
 
@@ -69,9 +64,6 @@ RedBlackTree<Integer, String> tree = new RedBlackTree<>(); //creation of a RB Tr
 		tree.delete(10); //deletion of a node
 ```
 
-
-
-
 ## Pending Work:
 
 - Documentation
@@ -83,7 +75,6 @@ RedBlackTree<Integer, String> tree = new RedBlackTree<>(); //creation of a RB Tr
 - More APIs to make it user friendly
 
 - More focus on Error Handling
-
 
 
 ### Thanks
