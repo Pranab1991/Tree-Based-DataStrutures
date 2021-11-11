@@ -18,7 +18,8 @@ A tree data structure can be defined recursively as a collection of nodes, where
 
 			3. The left and right subtree each must also be a binary search tree.</pre>
 
-<pre> - <b>Read Black Tree</b>  :  A red-black tree is a kind of self-balancing binary search tree where each node has an extra bit, and that bit is often interpreted as the color
+<pre> - <b>Read Black Tree</b>  :  A red-black tree is a kind of self-balancing binary search tree where each node has an extra bit, 
+and that bit is often interpreted as the color
 
 			Rules That Every Red-Black Tree Follows: 
 
@@ -30,7 +31,8 @@ A tree data structure can be defined recursively as a collection of nodes, where
 
 			4. Every path from a node (including root) to any of its descendants NULL nodes has the same number of black nodes.</pre>
 
-<pre> - <b>AVL Tree</b> : AVL tree is a self-balancing Binary Search Tree (BST) where the difference between heights of left and right subtrees cannot be more than one for all nodes. </pre>
+<pre> - <b>AVL Tree</b> : AVL tree is a self-balancing Binary Search Tree (BST) where the difference between heights
+of left and right subtrees cannot be more than one for all nodes. </pre>
 <br>
 
 ###### Design :
