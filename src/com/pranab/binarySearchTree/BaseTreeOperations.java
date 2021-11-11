@@ -5,7 +5,7 @@ import java.util.concurrent.locks.ReentrantReadWriteLock.ReadLock;
 import java.util.concurrent.locks.ReentrantReadWriteLock.WriteLock;
 import java.util.function.Consumer;
 
-public abstract class BaseTreeOperations<K extends Comparable<? super K>, V> implements TreeOperations<K, V> {
+public abstract class BaseTreeOperations<K extends Comparable<K>, V> implements TreeOperations<K, V> {
 	protected Node<K, V> root;
 	protected int size;
 	protected ReentrantReadWriteLock locker = new ReentrantReadWriteLock();

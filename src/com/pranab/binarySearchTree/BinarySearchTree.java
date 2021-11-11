@@ -2,7 +2,7 @@ package com.pranab.binarySearchTree;
 
 import java.util.function.Consumer;
 
-public class BinarySearchTree<K extends Comparable<? super K>, V> extends BaseTreeOperations<K, V> {
+public class BinarySearchTree<K extends Comparable<K>, V> extends BaseTreeOperations<K, V> {
 
 	@Override
 	public boolean insert(K key, V value) {
@@ -68,10 +68,10 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> extends BaseTr
 				transplant(found, to_be_replaced);
 				to_be_replaced.setLeftChild(found.getLeftChild());
 				found.getLeftChild().setParent(to_be_replaced);
-				found.setLeftChild(null);
-				found.setRightChild(null);
-				found.setParent(null);
 			}
+			found.setLeftChild(null);
+			found.setRightChild(null);
+			found.setParent(null);
 			size--;
 			return true;
 		} catch (Exception e) {
@@ -159,7 +159,7 @@ public class BinarySearchTree<K extends Comparable<? super K>, V> extends BaseTr
 	public boolean contains(K key) {
 		readlocker.lock();
 		try {
-			Node<K, V> value = getMinimum(this.root);
+			Node<K, V> value = search(key);
 			return value == null ? false : true;
 		} finally {
 			readlocker.unlock();

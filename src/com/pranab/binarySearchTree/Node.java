@@ -1,6 +1,6 @@
 package com.pranab.binarySearchTree;
 
-public class Node<K extends Comparable<? super K>, V> {
+public class Node<K extends Comparable<K>, V> {
 	private K key;
 	private Node<K, V> leftChild;
 	private Node<K, V> rightChild;

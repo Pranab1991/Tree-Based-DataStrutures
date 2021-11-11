@@ -2,7 +2,7 @@ package com.pranab.binarySearchTree;
 
 import java.util.function.Consumer;
 
-public interface TreeOperations<K extends Comparable<? super K> ,V> {
+public interface TreeOperations<K extends Comparable<K> ,V> {
 
 V getValue(K key) ;
 K getMinimumKey() ;
