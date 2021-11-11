@@ -76,6 +76,7 @@ RedBlackTree<Integer, String> tree = new RedBlackTree<>(); //creation of a RB Tr
 
 - More focus on Error Handling
 
+- Packaging
 
 ### Thanks
 
